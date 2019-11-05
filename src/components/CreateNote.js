@@ -16,14 +16,14 @@ export default class CreateNote extends Component {
 
     }
     async componentDidMount(){
-        const res = await axios.get('https://mern-stack-backend.herokuapp.com/api/notes')
+        const res = await axios.get('https://mern-stack-backend.herokuapp.com/api/users')
         this.setState({
            users: res.data,
            userSelected: res.data[0].username,
            userEmail: res.data[0].email
         })
         if(this.props.match.params.id){
-            const res = await axios.get('https://mern-stack-backend.herokuapp.com/api/notes' + this.props.match.params.id);
+            const res = await axios.get('https://mern-stack-backend.herokuapp.com/api/notes/' + this.props.match.params.id);
             this.setState({
                 title: res.data.title,
                 content: res.data.content,
@@ -59,7 +59,7 @@ export default class CreateNote extends Component {
             authorMail: this.state.userEmail
         }
         if(this.state.editing){
-            await axios.put('https://mern-stack-backend.herokuapp.com/api/notes' + this.state._id, newNote)
+            await axios.put('https://mern-stack-backend.herokuapp.com/api/notes/' + this.state._id, newNote)
         }else{
             await axios.post('https://mern-stack-backend.herokuapp.com/api/notes', newNote);
         }
