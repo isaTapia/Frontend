@@ -28,7 +28,7 @@ export default class NotesList extends Component {
         this.setState({notes: res.data})
     }
     deleteNote = async (id) => {
-        await axios.delete('https://mern-stack-backend.herokuapp.com/api/notes' + id);
+        await axios.delete('https://mern-stack-backend.herokuapp.com/api/notes/' + id);
         this.getNotes();
     }
 
